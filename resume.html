@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -149,4 +149,178 @@
             padding-left: 18px;
             margin-bottom: 20px;
             color: var(--secondary-color);
-            font-size:
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .exp-item {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .exp-title {
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .exp-date {
+            color: #777;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        .exp-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .btn-container {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .btn-contact {
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-contact:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        @media (max-width: 850px) {
+            .resume-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                padding: 40px;
+            }
+            .main-content {
+                padding: 30px;
+            }
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        
+<aside class="sidebar">
+            <img src="images/image_0.png.JPG" alt="個人照片" class="profile-pic">>
+            
+            <h2>聯絡資訊</h2>
+            <div class="info-item"><span class="info-label">學號</span> AU114018073</div>
+            <div class="info-item"><span class="info-label">學校</span> 亞洲大學</div>
+            <div class="info-item"><span class="info-label">信箱</span> AU114018073@asia.edu.tw</div>
+            
+            <br>
+            <h2>專業技能</h2>
+            <ul class="skills-list">
+                <li>Web Development (HTML/CSS)</li>
+                <li>Version Control (Git/GitHub)</li>
+                <li>Visual Studio Code (IDE)</li>
+                <li>Acoustic Analysis (聲學基礎)</li>
+                <li>Asset Allocation (資產配置)</li>
+                <li>Technical Writing</li>
+            </ul>
+        </aside>
+
+        
+<main class="main-content">
+            <header>
+                <div class="header-title">
+                    <h1 id="user-name">亞洲大學學生</h1>
+                    <p>Web 開發與跨領域知識學習者</p>
+                </div>
+                <img src="https://upload.wikimedia.org/wikipedia/zh/a/af/Asia_University%2C_Taiwan_logo.svg" alt="亞洲大學 Logo" class="au-logo">
+            </header>
+
+            <section>
+                <h3>關於我</h3>
+                <p>
+                    目前就讀於亞洲大學，熱衷於探索資訊技術與跨領域知識的交集。我具備基礎的網頁開發能力（HTML/CSS），並熟練使用 Git 與 GitHub 進行版本控制與專案管理。
+                    除了資訊領域外，我也對聲學物理及金融投資（尤其是 ETF 與股債資產配置）有深入的學習興趣，期望能持續整合不同領域的知識，創造更多可能性。
+                </p>
+            </section>
+
+            <section>
+                <h3>教育背景</h3>
+                <div class="exp-item">
+                    <div class="exp-title">
+                        <span>亞洲大學 - 學士學位</span>
+                        <span class="exp-date">2022 - 至今</span>
+                    </div>
+                    <p class="exp-desc">修習資安基礎、演算法、網頁設計、離散數學等核心課程。</p>
+                </div>
+            </section>
+
+            <section>
+                <h3>專案與學習經歷</h3>
+                <div class="exp-item">
+                    <div class="exp-title">
+                        <span>個人履歷佈署與 Git 管理</span>
+                    </div>
+                    <p class="exp-desc">使用 VS Code、Git 進行版本控制，並透過 GitHub Pages 成功佈署靜態個人履歷網頁。</p>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-title">
+                        <span>ETF 資產配置與平衡策略研究</span>
+                    </div>
+                    <p class="exp-desc">自行建立股債資產配置模型，研究長期持有、再平衡與定期定額對投資組合績效之影響。</p>
+                </div>
+            </section>
+
+            <div class="btn-container">
+                <button class="btn-contact" onclick="greet()">點擊打聲招呼</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function greet() {
+            const time = new Date().getHours();
+            let message = "";
+            if (time < 12) message = "早安！";
+            else if (time < 18) message = "午安！";
+            else message = "晚安！";
+            
+            alert(message + " 歡迎參觀 AU114018073 的個人履歷空間。");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("履歷已載入完成 - AU114018073");
+        });
+    </script>
+</body>
+</html>
