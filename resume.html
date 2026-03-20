@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人履歷 - AU114018073</title>
+    <style>
+        :root {
+            --primary-color: #1a253a; /* 稍微加深主色調 */
+            --secondary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f0f4f7;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "SF Pro TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 40px 10px;
+        }
+
+        .resume-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        /* 左側欄位 */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 50px 25px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            object-fit: cover; /* 確保照片按比例裁剪填滿 */
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .sidebar h2 {
+            width: 100%;
+            font-size: 1.3rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 8px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .info-item {
+            width: 100%;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #3498db;
+            width: 55px;
+            flex-shrink: 0;
+        }
+
+        .skills-list {
+            list-style: none;
+            width: 100%;
+        }
+
+        .skills-list li {
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.08);
+            padding: 7px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border-left: 3px solid transparent;
+            transition: 0.2s;
+        }
+
+        .skills-list li:hover {
+            background: rgba(255,255,255,0.15);
+            border-left: 3px solid #3498db;
+            transform: translateX(5px);
+        }
+
+        /* 右側欄位 */
+        .main-content {
+            flex-grow: 1;
+            padding: 50px;
+        }
+
+        header {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 25px;
+        }
+
+        .header-title h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .header-title p {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+
+        .au-logo {
+            width: 120px;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        section h3 {
+            border-left: 6px solid var(--accent-color);
+            padding-left: 18px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            font-size:
