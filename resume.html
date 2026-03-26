@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人履歷 | AU114018073</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-page: #F3EFE9;          /* 整體背景米色 */
-            --bg-sidebar: #E5DED4;       /* 左側欄稍微深一點的米色 */
-            --header-dark: #3E3B39;      /* 姓名區塊深棕色背景 */
-            --primary-brown: #7D6C5F;    /* 主標題棕色 */
-            --secondary-brown: #9E8D81;  /* 副標題棕色 */
-            --text-dark: #3E3B39;        /* 主要內文色 */
-            --text-light: #F3EFE9;       /* 深色背景上的文字色 */
-            --progress-bg: #D1C4B9;      /* 進度條背景色 */
-            --progress-fill: #5D5A57;    /* 進度條填充色 */
-            --divider: #9E8D81;          /* 中央分隔線顏色 */
+            --primary-dark: #1e3a5f; /* 醫學專業感深藍 */
+            --accent-blue: #3498db;
+            --soft-gray: #f8f9fa;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --white: #ffffff;
         }
 
         * {
@@ -27,335 +23,296 @@
         }
 
         body {
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding: 20px;
+            background-color: #e9ecef;
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 50px 15px;
         }
 
         /* 履歷主容器 */
-        .resume-container {
+        .resume-card {
             max-width: 1000px;
             margin: 0 auto;
-            background: var(--bg-sidebar);
+            background: var(--white);
             display: flex;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            overflow: hidden; /* 確保內容不會溢出圓角 */
-            border: 1px solid #D9D2C9;
-        }
-
-        /* --- 左側欄位 --- */
-        .sidebar {
-            width: 320px;
-            background-color: var(--bg-sidebar);
-            padding: 0;
-            flex-shrink: 0;
-            border-right: 1px solid var(--divider);
-        }
-
-        .profile-pic-container {
-            width: 100%;
-            padding-top: 100%; /* 1:1 比例 */
-            position: relative;
-            background-color: #D1C4B9; /* 照片載入前的預設背景 */
-            margin-bottom: 20px;
-        }
-
-        .profile-pic {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 確保照片填滿矩形且不變形 */
-        }
-
-        /* 側邊欄一般區塊 */
-        .sidebar-section {
-            padding: 20px 30px;
-        }
-
-        .sidebar-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--primary-brown);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--primary-brown);
-            padding-bottom: 5px;
-        }
-
-        .sidebar-item {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .item-subtitle {
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
-        .item-detail {
-            color: var(--secondary-brown);
-            font-weight: 300;
-        }
-
-        /* 技能進度條樣式 */
-        .skill-item {
-            margin-bottom: 12px;
-        }
-
-        .skill-name {
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 4px;
-            color: var(--text-dark);
-        }
-
-        .progress-bar-container {
-            width: 100%;
-            height: 8px;
-            background-color: var(--progress-bg);
-            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-radius: 15px;
             overflow: hidden;
         }
 
-        .progress-bar-fill {
-            height: 100%;
-            background-color: var(--progress-fill);
-            border-radius: 4px;
+        /* 左側邊欄 (深色) */
+        .sidebar {
+            width: 320px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 35px;
+            flex-shrink: 0;
         }
 
-        /* 語言列表 */
-        .language-list {
+        .profile-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-pic {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 6px solid rgba(255,255,255,0.1);
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .sidebar h2 {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .info-list {
             list-style: none;
-            padding-left: 10px;
+            margin-bottom: 40px;
         }
 
-        .language-list li {
+        .info-list li {
             font-size: 0.9rem;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-            font-weight: 300;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* --- 右側內容區 --- */
+        .info-list span {
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .skills-tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* 右側內容區 */
         .main-content {
             flex-grow: 1;
-            padding: 0;
-            background: var(--bg-page);
+            padding: 60px 50px;
+            background: var(--white);
+        }
+
+        header {
+            margin-bottom: 50px;
             position: relative;
         }
 
-        /* 姓名與聯絡資訊 Header (深色區塊) */
-        .content-header {
-            background-color: var(--header-dark);
-            color: var(--text-light);
-            padding: 40px 50px;
-        }
-
-        .header-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+        header h1 {
+            font-size: 3rem;
+            color: var(--primary-dark);
             font-weight: 700;
             margin-bottom: 5px;
         }
 
-        .header-title {
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--secondary-brown);
-            margin-bottom: 25px;
-        }
-
-        .contact-info {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 20px;
-        }
-
-        .contact-title {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .contact-item {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 8px;
-            font-weight: 300;
-        }
-
-        /* 一般區塊樣式 */
-        .content-section {
-            padding: 40px 50px;
-        }
-
-        .content-title {
-            font-family: 'Playfair Display', serif;
+        header .subtitle {
             font-size: 1.2rem;
-            color: var(--primary-brown);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--divider);
-            padding-bottom: 5px;
+            color: var(--accent-blue);
+            font-weight: 400;
         }
 
-        /* 關於我內文 */
-        .about-text {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            text-align: justify;
-            font-weight: 300;
+        .au-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            opacity: 0.15;
         }
 
-        /* 經歷與專案項目樣式 */
+        section {
+            margin-bottom: 45px;
+        }
+
+        section h3 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        section h3::after {
+            content: "";
+            height: 2px;
+            flex-grow: 1;
+            background: #eee;
+            margin-left: 20px;
+        }
+
         .experience-item {
             margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 3px solid var(--accent-blue);
         }
 
-        .exp-role-title {
-            font-weight: 500;
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .exp-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        p {
             font-size: 1rem;
-            color: var(--text-dark);
+            color: #555;
+            text-align: justify;
         }
 
-        .exp-company-date {
-            color: var(--secondary-brown);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            font-weight: 300;
+        /* 按鈕樣式 */
+        .btn-interact {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 30px;
+            background-color: var(--primary-dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
-        .exp-desc {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            font-weight: 300;
-            margin-bottom: 15px;
+        .btn-interact:hover {
+            background-color: var(--accent-blue);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
         }
 
         /* 手機版適應 */
         @media (max-width: 850px) {
-            .resume-container {
+            .resume-card {
                 flex-direction: column;
             }
             .sidebar {
                 width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--divider);
+                padding: 40px 30px;
             }
             .main-content {
-                padding: 0;
+                padding: 40px 30px;
+            }
+            header h1 {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="resume-container">
+    <div class="resume-card">
         <aside class="sidebar">
-            <div class="profile-pic-container">
-                <img src="profile.jpg" alt="個人照片" class="profile-pic">
+            <div class="profile-container">
+                <img src="images/profile.jpg" alt="個人照片" class="profile-pic">
             </div>
 
-            <div class="sidebar-section">
-                <div class="sidebar-title">Education</div>
-                <div class="sidebar-item">
-                    <div class="item-subtitle">亞洲大學</div>
-                    <div class="item-detail">聽力暨語言治療學系</div>
-                    <div class="item-detail exp-date">2022 - 至今</div>
-                </div>
-                <div class="sidebar-item">
-                    <div class="item-detail">修習核心課程：基礎醫學、聽力學、語音聲學與溝通障礙。</div>
-                </div>
-            </div>
+            <h2>聯絡資訊</h2>
+            <ul class="info-list">
+                <li><span>STUDENT ID</span>AU114018073</li>
+                <li><span>UNIVERSITY</span>亞洲大學 聽語系</li>
+                <li><span>EMAIL</span>AU114018073@asia.edu.tw</li>
+                <li><span>LOCATION</span>台中市, 台灣</li>
+            </ul>
 
-            <div class="sidebar-section">
-                <div class="sidebar-title">Skills</div>
-                <div class="skill-item">
-                    <div class="skill-name">聽力評估與診斷</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" style="width: 85%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">語言障礙評估</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">HTML5 / CSS3</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" style="width: 70%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">Git 版本控制</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" style="width: 75%;"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">ETF 資產配置策略</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-fill" style="width: 90%;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar-section">
-                <div class="sidebar-title">Language</div>
-                <ul class="language-list">
-                    <li>繁體中文 (母語)</li>
-                    <li>English (基礎溝通)</li>
-                </ul>
+            <h2>專業與技能</h2>
+            <div class="skills-tag-container">
+                <div class="skill-tag">聽力評估</div>
+                <div class="skill-tag">語言障礙評估</div>
+                <div class="skill-tag">聲學物理基礎</div>
+                <div class="skill-tag">HTML5 / CSS3</div>
+                <div class="skill-tag">Git 版本控制</div>
+                <div class="skill-tag">ETF 資產配置</div>
+                <div class="skill-tag">藝術導覽</div>
             </div>
         </aside>
 
         <main class="main-content">
-            <header class="content-header">
-                <div class="header-name">亞洲大學學生</div>
-                <div class="header-title">聽力暨語言治療學系 | 數位開發與金融研究者</div>
-                <div class="contact-info">
-                    <div class="contact-title">Contact</div>
-                    <div class="contact-item">學號: AU114018073</div>
-                    <div class="contact-item">信箱: AU114018073@asia.edu.tw</div>
-                    <div class="contact-item">地點: 台中市, 台灣</div>
-                </div>
+            <header>
+                <h1>亞洲大學學生</h1>
+                <p class="subtitle">聽力暨語言治療學系 | 數位開發與金融研究者</p>
+                <img src="https://upload.wikimedia.org/wikipedia/zh/a/af/Asia_University%2C_Taiwan_logo.svg" alt="AU Logo" class="au-logo au-badge">
             </header>
 
-            <section class="content-section">
-                <div class="content-title">About Me</div>
-                <p class="about-text">
-                    就讀於亞洲大學聽語系，熱衷於結合醫學專業與資訊科技。我對聲學物理及語音波形有著深厚的理解，並將這份嚴謹應用於網頁前端開發。同時，我也積極探索金融投資領域，擅長以科學化的股債配置策略進行資產管理。我是一個跨領域的學習者，享受在醫學、科技與財務管理之間建立連結。
+            <section>
+                <h3>關於我 About Me</h3>
+                <p>
+                    我是就讀於亞洲大學聽語系的學生，致力於結合醫學專業與資訊科技。我對聲學物理及語音波形有著深厚的理解，並將這份嚴謹應用於網頁前端開發。同時，我也積極探索金融投資領域，擅長以科學化的股債配置策略進行資產管理。我是一個跨領域的學習者，享受在醫學、科技與財務管理之間建立連結。
                 </p>
             </section>
 
-            <section class="content-section">
-                <div class="content-title">Experience & Projects</div>
-                
+            <section>
+                <h3>學術背景 Education</h3>
                 <div class="experience-item">
-                    <div class="exp-role-title">數位個人品牌建置 (GitHub Deployment)</div>
-                    <div class="exp-company-date">個人專案 | 2024</div>
-                    <p class="exp-desc">獨立完成網頁 resume 製作，透過 VS Code 與 Git 進行版本管理，並成功於 GitHub Pages 佈署個人數位名片。</p>
+                    <div class="exp-header">
+                        <span>亞洲大學 聽力暨語言治療學系</span>
+                        <span class="exp-date">2022 - 至今</span>
+                    </div>
+                    <p>修習基礎醫學、聽力學、語音聲學與溝通障礙等核心課程，培養高度的專業分析與病患溝通能力。</p>
                 </div>
+            </section>
 
+            <section>
+                <h3>專業專案 Projects</h3>
                 <div class="experience-item">
-                    <div class="exp-role-title">聲學物理與藝術跨界研究</div>
-                    <div class="exp-company-date">學術專案 | 2023 - 2024</div>
-                    <p class="exp-desc">研究美術館（如南美館、故宮南院）之空間聲學對參觀體驗的影響，結合 SDGs 永續旅遊概念，實踐深度文化探訪。</p>
+                    <div class="exp-header">
+                        <span>數位個人品牌建置 (GitHub Deployment)</span>
+                    </div>
+                    <p>獨立完成網頁 resume 製作，透過 VS Code 與 Git 進行版本管理，並成功於 GitHub Pages 佈署個人數位名片。</p>
                 </div>
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span>聲學物理與藝術跨界研究</span>
+                    </div>
+                    <p>研究美術館（如南美館、故宮南院）之空間聲學對參觀體驗的影響，結合 SDGs 永續旅遊概念，實踐深度文化探訪。</p>
+                </div>
+            </section>
+
+            <section>
+                <h3>互動體驗</h3>
+                <button class="btn-interact" onclick="welcome()">與我聯繫</button>
             </section>
         </main>
     </div>
 
     <script>
-        console.log("專業典雅風履歷已載入 | AU114018073");
+        function welcome() {
+            const hour = new Date().getHours();
+            let greeting = "您好！";
+            if (hour < 12) greeting = "早安！";
+            else if (hour < 18) greeting = "午安！";
+            else greeting = "晚安！";
+            
+            alert(greeting + " 歡迎訪問 AU114018073 的專業履歷空間。如有跨領域合作機會，歡迎來信！");
+        }
+
+        console.log("專業履歷已載入 | 聽語系 AU114018073");
     </script>
 </body>
 </html>
