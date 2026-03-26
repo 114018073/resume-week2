@@ -1,233 +1,255 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人履歷 - AU114018073</title>
+    <title>個人履歷 | AU114018073</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a253a; /* 稍微加深主色調 */
-            --secondary-color: #2c3e50;
-            --accent-color: #3498db;
-            --text-color: #333;
-            --bg-color: #f0f4f7;
-            --sidebar-width: 280px;
+            --bg-page: #F3EFE9;          /* 整體背景米色 */
+            --bg-sidebar: #E5DED4;       /* 左側欄稍微深一點的米色 */
+            --header-dark: #3E3B39;      /* 姓名區塊深棕色背景 */
+            --primary-brown: #7D6C5F;    /* 主標題棕色 */
+            --secondary-brown: #9E8D81;  /* 副標題棕色 */
+            --text-dark: #3E3B39;        /* 主要內文色 */
+            --text-light: #F3EFE9;       /* 深色背景上的文字色 */
+            --progress-bg: #D1C4B9;      /* 進度條背景色 */
+            --progress-fill: #5D5A57;    /* 進度條填充色 */
+            --divider: #9E8D81;          /* 中央分隔線顏色 */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Noto Sans TC', sans-serif;
         }
 
         body {
-            font-family: "SF Pro TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            padding: 40px 10px;
+            padding: 20px;
         }
 
+        /* 履歷主容器 */
         .resume-container {
             max-width: 1000px;
             margin: 0 auto;
-            background: #fff;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-            border-radius: 12px;
-            overflow: hidden;
+            background: var(--bg-sidebar);
             display: flex;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            overflow: hidden; /* 確保內容不會溢出圓角 */
+            border: 1px solid #D9D2C9;
         }
 
-        /* 左側欄位 */
+        /* --- 左側欄位 --- */
         .sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--primary-color);
-            color: rgba(255, 255, 255, 0.95);
-            padding: 50px 25px;
+            width: 320px;
+            background-color: var(--bg-sidebar);
+            padding: 0;
             flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border-right: 1px solid var(--divider);
+        }
+
+        .profile-pic-container {
+            width: 100%;
+            padding-top: 100%; /* 1:1 比例 */
+            position: relative;
+            background-color: #D1C4B9; /* 照片載入前的預設背景 */
+            margin-bottom: 20px;
         }
 
         .profile-pic {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-            object-fit: cover; /* 確保照片按比例裁剪填滿 */
-            margin-bottom: 25px;
-            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 確保照片填滿矩形且不變形 */
         }
 
-        .sidebar h2 {
-            width: 100%;
-            font-size: 1.3rem;
-            margin-top: 25px;
+        /* 側邊欄一般區塊 */
+        .sidebar-section {
+            padding: 20px 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--primary-brown);
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 15px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 8px;
-            color: #fff;
-            letter-spacing: 1px;
+            border-bottom: 2px solid var(--primary-brown);
+            padding-bottom: 5px;
         }
 
-        .info-item {
-            width: 100%;
-            margin-bottom: 12px;
+        .sidebar-item {
             font-size: 0.9rem;
-            display: flex;
-            align-items: center;
+            margin-bottom: 10px;
         }
 
-        .info-label {
-            font-weight: bold;
-            color: #3498db;
-            width: 55px;
-            flex-shrink: 0;
+        .item-subtitle {
+            font-weight: 500;
+            color: var(--text-dark);
         }
 
-        .skills-list {
-            list-style: none;
-            width: 100%;
+        .item-detail {
+            color: var(--secondary-brown);
+            font-weight: 300;
         }
 
-        .skills-list li {
-            margin-bottom: 8px;
-            background: rgba(255,255,255,0.08);
-            padding: 7px 12px;
-            border-radius: 6px;
+        /* 技能進度條樣式 */
+        .skill-item {
+            margin-bottom: 12px;
+        }
+
+        .skill-name {
             font-size: 0.85rem;
-            border-left: 3px solid transparent;
-            transition: 0.2s;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: var(--text-dark);
         }
 
-        .skills-list li:hover {
-            background: rgba(255,255,255,0.15);
-            border-left: 3px solid #3498db;
-            transform: translateX(5px);
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background-color: var(--progress-bg);
+            border-radius: 4px;
+            overflow: hidden;
         }
 
-        /* 右側欄位 */
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--progress-fill);
+            border-radius: 4px;
+        }
+
+        /* 語言列表 */
+        .language-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .language-list li {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 300;
+        }
+
+        /* --- 右側內容區 --- */
         .main-content {
             flex-grow: 1;
-            padding: 50px;
+            padding: 0;
+            background: var(--bg-page);
+            position: relative;
         }
 
-        header {
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 25px;
+        /* 姓名與聯絡資訊 Header (深色區塊) */
+        .content-header {
+            background-color: var(--header-dark);
+            color: var(--text-light);
+            padding: 40px 50px;
         }
 
-        .header-title h1 {
+        .header-name {
+            font-family: 'Playfair Display', serif;
             font-size: 2.8rem;
-            color: var(--primary-color);
+            font-weight: 700;
             margin-bottom: 5px;
         }
 
-        .header-title p {
-            color: var(--accent-color);
-            font-weight: 600;
-            font-size: 1.15rem;
-        }
-
-        .au-logo {
-            width: 120px;
-            height: auto;
-            opacity: 0.8;
-        }
-
-        section {
-            margin-bottom: 35px;
-        }
-
-        section h3 {
-            border-left: 6px solid var(--accent-color);
-            padding-left: 18px;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .exp-item {
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .exp-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 6px;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-color);
-            border-radius: 50%;
-        }
-
-        .exp-title {
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            color: #333;
-            margin-bottom: 4px;
-        }
-
-        .exp-date {
-            color: #777;
+        .header-title {
+            font-size: 1.3rem;
             font-weight: 400;
+            color: var(--secondary-brown);
+            margin-bottom: 25px;
+        }
+
+        .contact-info {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+        }
+
+        .contact-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .contact-item {
             font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+
+        /* 一般區塊樣式 */
+        .content-section {
+            padding: 40px 50px;
+        }
+
+        .content-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--primary-brown);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--divider);
+            padding-bottom: 5px;
+        }
+
+        /* 關於我內文 */
+        .about-text {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            text-align: justify;
+            font-weight: 300;
+        }
+
+        /* 經歷與專案項目樣式 */
+        .experience-item {
+            margin-bottom: 25px;
+        }
+
+        .exp-role-title {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .exp-company-date {
+            color: var(--secondary-brown);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 300;
         }
 
         .exp-desc {
-            color: #666;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 300;
+            margin-bottom: 15px;
         }
 
-        .btn-container {
-            text-align: right;
-            margin-top: 20px;
-        }
-
-        .btn-contact {
-            background: var(--accent-color);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-
-        .btn-contact:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
-        }
-
+        /* 手機版適應 */
         @media (max-width: 850px) {
             .resume-container {
                 flex-direction: column;
             }
             .sidebar {
                 width: 100%;
-                padding: 40px;
+                border-right: none;
+                border-bottom: 1px solid var(--divider);
             }
             .main-content {
-                padding: 30px;
-            }
-            header {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
+                padding: 0;
             }
         }
     </style>
@@ -235,92 +257,105 @@
 <body>
 
     <div class="resume-container">
-        
-<aside class="sidebar">
-            <img src="images/profile.jpg" alt="個人照片" class="profile-pic">
-            
-            <h2>聯絡資訊</h2>
-            <div class="info-item"><span class="info-label">學號</span> AU114018073</div>
-            <div class="info-item"><span class="info-label">學校</span> 亞洲大學</div>
-            <div class="info-item"><span class="info-label">信箱</span> AU114018073@asia.edu.tw</div>
-            
-            <br>
-            <h2>專業技能</h2>
-            <ul class="skills-list">
-                <li>Web Development (HTML/CSS)</li>
-                <li>Version Control (Git/GitHub)</li>
-                <li>Visual Studio Code (IDE)</li>
-                <li>Acoustic Analysis (聲學基礎)</li>
-                <li>Asset Allocation (資產配置)</li>
-                <li>Technical Writing</li>
-            </ul>
+        <aside class="sidebar">
+            <div class="profile-pic-container">
+                <img src="profile.jpg" alt="個人照片" class="profile-pic">
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Education</div>
+                <div class="sidebar-item">
+                    <div class="item-subtitle">亞洲大學</div>
+                    <div class="item-detail">聽力暨語言治療學系</div>
+                    <div class="item-detail exp-date">2022 - 至今</div>
+                </div>
+                <div class="sidebar-item">
+                    <div class="item-detail">修習核心課程：基礎醫學、聽力學、語音聲學與溝通障礙。</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Skills</div>
+                <div class="skill-item">
+                    <div class="skill-name">聽力評估與診斷</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">語言障礙評估</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">HTML5 / CSS3</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Git 版本控制</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">ETF 資產配置策略</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Language</div>
+                <ul class="language-list">
+                    <li>繁體中文 (母語)</li>
+                    <li>English (基礎溝通)</li>
+                </ul>
+            </div>
         </aside>
 
-        
-<main class="main-content">
-            <header>
-                <div class="header-title">
-                    <h1 id="user-name">亞洲大學學生</h1>
-                    <p>Web 開發與跨領域知識學習者</p>
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-name">亞洲大學學生</div>
+                <div class="header-title">聽力暨語言治療學系 | 數位開發與金融研究者</div>
+                <div class="contact-info">
+                    <div class="contact-title">Contact</div>
+                    <div class="contact-item">學號: AU114018073</div>
+                    <div class="contact-item">信箱: AU114018073@asia.edu.tw</div>
+                    <div class="contact-item">地點: 台中市, 台灣</div>
                 </div>
-                <img src="https://upload.wikimedia.org/wikipedia/zh/a/af/Asia_University%2C_Taiwan_logo.svg" alt="亞洲大學 Logo" class="au-logo">
             </header>
 
-            <section>
-                <h3>關於我</h3>
-                <p>
-                    目前就讀於亞洲大學，熱衷於探索資訊技術與跨領域知識的交集。我具備基礎的網頁開發能力（HTML/CSS），並熟練使用 Git 與 GitHub 進行版本控制與專案管理。
-                    除了資訊領域外，我也對聲學物理及金融投資（尤其是 ETF 與股債資產配置）有深入的學習興趣，期望能持續整合不同領域的知識，創造更多可能性。
+            <section class="content-section">
+                <div class="content-title">About Me</div>
+                <p class="about-text">
+                    就讀於亞洲大學聽語系，熱衷於結合醫學專業與資訊科技。我對聲學物理及語音波形有著深厚的理解，並將這份嚴謹應用於網頁前端開發。同時，我也積極探索金融投資領域，擅長以科學化的股債配置策略進行資產管理。我是一個跨領域的學習者，享受在醫學、科技與財務管理之間建立連結。
                 </p>
             </section>
 
-            <section>
-                <h3>教育背景</h3>
-                <div class="exp-item">
-                    <div class="exp-title">
-                        <span>亞洲大學 - 學士學位</span>
-                        <span class="exp-date">2022 - 至今</span>
-                    </div>
-                    <p class="exp-desc">修習資安基礎、演算法、網頁設計、離散數學等核心課程。</p>
+            <section class="content-section">
+                <div class="content-title">Experience & Projects</div>
+                
+                <div class="experience-item">
+                    <div class="exp-role-title">數位個人品牌建置 (GitHub Deployment)</div>
+                    <div class="exp-company-date">個人專案 | 2024</div>
+                    <p class="exp-desc">獨立完成網頁 resume 製作，透過 VS Code 與 Git 進行版本管理，並成功於 GitHub Pages 佈署個人數位名片。</p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-role-title">聲學物理與藝術跨界研究</div>
+                    <div class="exp-company-date">學術專案 | 2023 - 2024</div>
+                    <p class="exp-desc">研究美術館（如南美館、故宮南院）之空間聲學對參觀體驗的影響，結合 SDGs 永續旅遊概念，實踐深度文化探訪。</p>
                 </div>
             </section>
-
-            <section>
-                <h3>專案與學習經歷</h3>
-                <div class="exp-item">
-                    <div class="exp-title">
-                        <span>個人履歷佈署與 Git 管理</span>
-                    </div>
-                    <p class="exp-desc">使用 VS Code、Git 進行版本控制，並透過 GitHub Pages 成功佈署靜態個人履歷網頁。</p>
-                </div>
-                <div class="exp-item">
-                    <div class="exp-title">
-                        <span>ETF 資產配置與平衡策略研究</span>
-                    </div>
-                    <p class="exp-desc">自行建立股債資產配置模型，研究長期持有、再平衡與定期定額對投資組合績效之影響。</p>
-                </div>
-            </section>
-
-            <div class="btn-container">
-                <button class="btn-contact" onclick="greet()">點擊打聲招呼</button>
-            </div>
         </main>
     </div>
 
     <script>
-        function greet() {
-            const time = new Date().getHours();
-            let message = "";
-            if (time < 12) message = "早安！";
-            else if (time < 18) message = "午安！";
-            else message = "晚安！";
-            
-            alert(message + " 歡迎參觀 AU114018073 的個人履歷空間。");
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("履歷已載入完成 - AU114018073");
-        });
+        console.log("專業典雅風履歷已載入 | AU114018073");
     </script>
 </body>
 </html>
