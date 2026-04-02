@@ -240,10 +240,7 @@
         <aside class="sidebar">
             <div class="profile-container">
                 <img src="images/profile.jpg" alt="個人照片" class="profile-pic">
-                <audio controls>
-  <source src="mp3/mp3.wav" type="audio/wav">
-Your browser does not support the audio element.
-</audio>
+                
 
                 <h1 id="sidebar-name" class="sidebar-name">洪銘均</h1>
             </div>
@@ -331,5 +328,24 @@ Your browser does not support the audio element.
 
         console.log("專業履歷已載入 | 聽語系 你的名字 AU114018073");
     </script>
+
+    <audio id="bgm" autoplay loop playsinline>
+  <source src="mp3/mp3.wav" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("bgm");
+
+  // 嘗試直接播放
+  audio.play().catch(() => {
+    // 若被擋，快速解除靜音再播放
+    audio.muted = true;
+    audio.play();
+
+    setTimeout(() => {
+      audio.muted = false;
+    }, 100);
+  });
+</script>
 </body>
 </html>
