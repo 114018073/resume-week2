@@ -328,24 +328,28 @@
 
         console.log("專業履歷已載入 | 聽語系 你的名字 AU114018073");
     </script>
-
-    <audio id="bgm" autoplay loop playsinline>
-  <source src="mp3/mp3.wav" type="audio/wav">
-</audio>
-
-<script>
+    <script>
   const audio = document.getElementById("bgm");
 
-  // 嘗試直接播放
+  // --- 老師提供的原始邏輯 ---
   audio.play().catch(() => {
-    // 若被擋，快速解除靜音再播放
     audio.muted = true;
     audio.play();
-
+    
+    // 這裡通常會被瀏覽器擋掉，所以我們加上下方的保險
     setTimeout(() => {
       audio.muted = false;
     }, 100);
   });
+
+  // --- 加強版保險：只要使用者點擊網頁，就解除靜音並播放 ---
+  document.addEventListener('click', () => {
+    audio.muted = false;
+    audio.play();
+    console.log("使用者互動，音樂解鎖！");
+  }, { once: true }); // 只執行一次
 </script>
+
+   
 </body>
 </html>
